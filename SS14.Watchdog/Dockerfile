@@ -4,7 +4,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0-bullseye-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
-EXPOSE 1212 # Game port
+# Game port
+EXPOSE 1212
 VOLUME ["/app/instances"]
 RUN apt-get update && apt-get install -y git python3 python-is-python3
 
