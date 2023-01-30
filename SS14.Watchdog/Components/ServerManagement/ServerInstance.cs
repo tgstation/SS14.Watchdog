@@ -253,6 +253,14 @@ namespace SS14.Watchdog.Components.ServerManagement
 
             _logger.LogTrace("Getting launch info...");
 
+            var configFile = Path.Combine(InstanceDir, "config.toml");
+
+            if (!File.Exists(configFile))
+            {
+                _logger.LogInformation("No config.toml found, creating one at {configFile}", configFile);
+                File.Create(configFile);
+            }
+
             var startInfo = new ProcessStartInfo
             {
                 WorkingDirectory = InstanceDir,
