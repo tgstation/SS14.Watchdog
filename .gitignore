@@ -356,3 +356,6 @@ MigrationBackup/
 
 .idea/
 *.sln.DotSettings.user
+
+instances/
+db_data/

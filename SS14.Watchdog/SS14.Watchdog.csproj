@@ -1,15 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
         <Version>0.2.0</Version>
         <ServerGarbageCollection>false</ServerGarbageCollection>
+        <UserSecretsId>3e881fcd-153d-4770-95a1-8c74b6a82a21</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
       <PackageReference Include="Microsoft.Diagnostics.NETCore.Client" Version="0.2.251802" />
+      <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
       <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
       <PackageReference Include="NetEscapades.Configuration.Yaml" Version="2.0.1" />
       <PackageReference Include="Serilog" Version="2.10.0" />

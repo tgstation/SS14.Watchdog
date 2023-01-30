@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:
+  ss14.watchdog:
+    image: ${DOCKER_REGISTRY-}ss14watchdog
+    container_name: SS14.Watchdog
+    restart: on-failure:5
+    build:
+      context: .
+      dockerfile: SS14.Watchdog/Dockerfile
+    ports:
+      - 5000:5000
+      - 5001:5001
+      - 1337:1337/tcp # Game info port
+      - 1337:1337/udp # Game data port
+    volumes:
+      - ./instances:/app/instances:rw
+      - ./SS14.Watchdog/appsettings.yml:/app/appsettings.yml:ro
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=https://+:5001;http://+:5000
+    depends_on:
+      - postgres
+    networks:
+      - default
+      - internal
+
+  postgres:
+    image: postgres
+    restart: on-failure:5
+    volumes:
+      - ./db_data/:/var/lib/postgresql/data/:rw
+    environment:
+      POSTGRES_DB: ss14
+      POSTGRES_USER: game
+      POSTGRES_PASSWORD: your_password_here
+    networks:
+      - internal
+
+networks:
+  default:
+  internal:
+    internal: true
